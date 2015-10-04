@@ -1,6 +1,7 @@
 package Scraping;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,6 +9,9 @@ import java.io.PrintWriter;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 
 import org.jsoup.Jsoup;
@@ -101,6 +105,20 @@ public class back {
         	running = false;
         else
         	System.out.println("Incorrect, answer was: " + ans);
+	}
+	
+	public static void playSound(String soundFile){
+		try {
+			// Create AudioStream from sound file
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundFile).getAbsoluteFile());
+	        // Create clip from AudioStream and play clip
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.start();
+	    } catch(Exception ex) {
+	        System.out.println("Sound error on playing file: " + soundFile);
+	        ex.printStackTrace();
+	    }
 	}
 	
 	public static void createList() throws IOException{
