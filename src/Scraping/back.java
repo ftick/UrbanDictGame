@@ -20,18 +20,32 @@ public class back {
 	
 	public static String[] words;
 	public static Scanner sc;
+	public static boolean running;
 	
 	public static void main(String[] args) throws IOException {
-//		getWordList.doStuff();
+//		init();
+		init2();
+		start();
+	}
+	
+	public static void init() throws IOException{
+		wordList.doStuff();
 		createList();
 		populateList();
-		
+	}
+	
+	public static void init2() throws IOException{
+		createList();
+		populateList();
+	}
+	
+	public static void start() throws IOException{
 		sc = new Scanner(System.in);
-		
-		for(int i = 0; i < 5; i++){
+		running = true;
+		while(running){
 			guess();
-			
 		}
+		System.out.println("Goodbye!");
 	}
     
 	public static void guess() throws IOException{
@@ -83,6 +97,8 @@ public class back {
         String guess = sc.next();
         if(guess.toLowerCase().equals(ans))
         	System.out.println("Correct");
+        else if(guess.toLowerCase().equals("quit"))
+        	running = false;
         else
         	System.out.println("Incorrect, answer was: " + ans);
 	}
