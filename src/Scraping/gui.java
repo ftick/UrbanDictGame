@@ -1,45 +1,256 @@
 package Scraping;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class gui extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	
-	public static String[] words;
-	public static Scanner sc;
+	static String[] words;
+	static Scanner sc;
+	static String word = "";
+	static int ans;
+	static int count = 0;
+	static int total = 0;
+	static BufferedImage logo;
 	
 	// Create objects
+	JLabel guessLbl;
+	JLabel correctLbl;
+	JLabel imageLbl;
 	
-	public gui( String title )
+	static JButton[] buttons = new JButton[4];
+	
+	public gui( String title ) throws IOException
 	{
 		super( title );
 		
 		// Set layout
-		JPanel pane = new JPanel(new GridBagLayout());
-		GridBagConstraints c = new GridBagConstraints();
+		setLayout(new FlowLayout());
 		
+		guessLbl = new JLabel("Word(s): " + word + "                     ");
+		correctLbl = new JLabel("");
+		logo = ImageIO.read(new File("src/logo.jpg"));
+		imageLbl = new JLabel(new ImageIcon(logo));
 		
+		add(correctLbl);
+		add(guessLbl);
+		for(JButton b: buttons){
+			add(b);
+		}
+		add(imageLbl);
 		
+		buttons[0].addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent me) {
+				if(ans==0){
+					count++; total++;
+					correctLbl.setText("Correct! " + count + "/" + total);
+				}else{
+					total++;
+					correctLbl.setText("Incorrect! " + count + "/" + total);
+				}
+				newWord();
+				guessLbl.setText("Word(s): " + word + "                     ");
+				ans = (int) (Math.random()*4);
+				try{
+					if(ans==0){
+						buttons[0].setText(back.getDef(word));
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getRandomDef());
+					}
+					else if(ans==1){
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getDef(word));
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getRandomDef());
+					}
+					else if(ans==1){
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getDef(word));
+						buttons[3].setText(back.getRandomDef());
+					}
+					else{
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getDef(word));
+					}
+				}catch(IOException e){}
+			}
+		});
+		
+		buttons[1].addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent me) {
+				if(ans==1){
+					count++; total++;
+					correctLbl.setText("Correct! " + count + "/" + total);
+				}else{
+					total++;
+					correctLbl.setText("Incorrect! " + count + "/" + total);
+				}
+				newWord();
+				guessLbl.setText("Word(s): " + word + "                     ");
+				ans = (int) (Math.random()*4);
+				try{
+					if(ans==0){
+						buttons[0].setText(back.getDef(word));
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getRandomDef());
+					}
+					else if(ans==1){
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getDef(word));
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getRandomDef());
+					}
+					else if(ans==1){
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getDef(word));
+						buttons[3].setText(back.getRandomDef());
+					}
+					else{
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getDef(word));
+					}
+				}catch(IOException e){}
+			}
+		});
+		
+		buttons[2].addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent me) {
+				if(ans==2){
+					count++; total++;
+					correctLbl.setText("Correct! " + count + "/" + total);
+				}else{
+					total++;
+					correctLbl.setText("Incorrect! " + count + "/" + total);
+				}
+				newWord();
+				guessLbl.setText("Word(s): " + word + "                     ");
+				ans = (int) (Math.random()*4);
+				try{
+					if(ans==0){
+						buttons[0].setText(back.getDef(word));
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getRandomDef());
+					}
+					else if(ans==1){
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getDef(word));
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getRandomDef());
+					}
+					else if(ans==1){
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getDef(word));
+						buttons[3].setText(back.getRandomDef());
+					}
+					else{
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getDef(word));
+					}
+				}catch(IOException e){}
+			}
+		});
+		
+		buttons[3].addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent me) {
+				if(ans==3){
+					count++; total++;
+					correctLbl.setText("Correct! " + count + "/" + total);
+				}else{
+					total++;
+					correctLbl.setText("Incorrect! " + count + "/" + total);
+				}
+				newWord();
+				guessLbl.setText("Word(s): " + word + "                     ");
+				ans = (int) (Math.random()*4);
+				try{
+					if(ans==0){
+						buttons[0].setText(back.getDef(word));
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getRandomDef());
+					}
+					else if(ans==1){
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getDef(word));
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getRandomDef());
+					}
+					else if(ans==1){
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getDef(word));
+						buttons[3].setText(back.getRandomDef());
+					}
+					else{
+						buttons[0].setText(back.getRandomDef());
+						buttons[1].setText(back.getRandomDef());
+						buttons[2].setText(back.getRandomDef());
+						buttons[3].setText(back.getDef(word));
+					}
+				}catch(IOException e){}
+			}
+		});
 		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 	}
-
-	@Override
-	public void actionPerformed( ActionEvent e )
-	{
+	
+	public static void newWord(){
+		word = back.randomWord();
+	}
+	
+	public static void randomizeSpots() throws IOException{
+		ans = (int) (Math.random()*4);
 		
+		if(ans==0){
+			buttons[0] = new JButton(back.getDef(word));
+			buttons[1] = new JButton(back.getRandomDef());
+			buttons[2] = new JButton(back.getRandomDef());
+			buttons[3] = new JButton(back.getRandomDef());
+		}
+		else if(ans==1){
+			buttons[0] = new JButton(back.getRandomDef());
+			buttons[1] = new JButton(back.getDef(word));
+			buttons[2] = new JButton(back.getRandomDef());
+			buttons[3] = new JButton(back.getRandomDef());
+		}
+		else if(ans==1){
+			buttons[0] = new JButton(back.getRandomDef());
+			buttons[1] = new JButton(back.getRandomDef());
+			buttons[2] = new JButton(back.getDef(word));
+			buttons[3] = new JButton(back.getRandomDef());
+		}
+		else{
+			buttons[0] = new JButton(back.getRandomDef());
+			buttons[1] = new JButton(back.getRandomDef());
+			buttons[2] = new JButton(back.getRandomDef());
+			buttons[3] = new JButton(back.getDef(word));
+		}
 	}
 	
 	public static void main( String[] args ) throws IOException
@@ -52,9 +263,18 @@ public class gui extends JFrame implements ActionListener
 			back.init2();
 		}
 		
+		newWord();
+		randomizeSpots();
+		
 		gui frame  = new gui( "Urban Dicts" );
 	    
-   		frame.setSize( 500, 175 );
+   		frame.setSize( 750, 500 );
     	frame.setVisible(true);  
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
