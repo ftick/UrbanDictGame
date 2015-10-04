@@ -42,7 +42,7 @@ public class gui extends JFrame implements ActionListener
 		// Set layout
 		setLayout(new FlowLayout());
 		
-		guessLbl = new JLabel("Word(s): " + word + "                     ");
+		guessLbl = new JLabel("                                                                             Word(s): " + word +  "                                                      ");
 		correctLbl = new JLabel("");
 		logo = ImageIO.read(new File("src/logo.jpg"));
 		imageLbl = new JLabel(new ImageIcon(logo));
@@ -64,7 +64,7 @@ public class gui extends JFrame implements ActionListener
 					correctLbl.setText("Incorrect! " + count + "/" + total);
 				}
 				newWord();
-				guessLbl.setText("Word(s): " + word + "                     ");
+				guessLbl.setText("                                                                             Word(s): " + word +  "                                                      ");
 				ans = (int) (Math.random()*4);
 				try{
 					if(ans==0){
@@ -105,7 +105,7 @@ public class gui extends JFrame implements ActionListener
 					correctLbl.setText("Incorrect! " + count + "/" + total);
 				}
 				newWord();
-				guessLbl.setText("Word(s): " + word + "                     ");
+				guessLbl.setText("                                                                             Word(s): " + word +  "                                                      ");
 				ans = (int) (Math.random()*4);
 				try{
 					if(ans==0){
@@ -146,7 +146,7 @@ public class gui extends JFrame implements ActionListener
 					correctLbl.setText("Incorrect! " + count + "/" + total);
 				}
 				newWord();
-				guessLbl.setText("Word(s): " + word + "                     ");
+				guessLbl.setText("                                                                             Word(s): " + word +  "                                                      ");
 				ans = (int) (Math.random()*4);
 				try{
 					if(ans==0){
@@ -187,7 +187,7 @@ public class gui extends JFrame implements ActionListener
 					correctLbl.setText("Incorrect! " + count + "/" + total);
 				}
 				newWord();
-				guessLbl.setText("Word(s): " + word + "                     ");
+				guessLbl.setText("                                                                             Word(s): " + word +  "                                                      ");
 				ans = (int) (Math.random()*4);
 				try{
 					if(ans==0){
