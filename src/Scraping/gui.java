@@ -32,6 +32,7 @@ public class gui extends JFrame implements ActionListener
 	JLabel guessLbl;
 	JLabel correctLbl;
 	JLabel imageLbl;
+	JButton cheat;
 	
 	static JButton[] buttons = new JButton[4];
 	
@@ -46,6 +47,7 @@ public class gui extends JFrame implements ActionListener
 		correctLbl = new JLabel("");
 		logo = ImageIO.read(new File("src/logo.jpg"));
 		imageLbl = new JLabel(new ImageIcon(logo));
+		cheat = new JButton("Cheat");
 		
 		add(guessLbl);
 		for(JButton b: buttons){
@@ -53,6 +55,14 @@ public class gui extends JFrame implements ActionListener
 		}
 		add(imageLbl);
 		add(correctLbl);
+		add(cheat);
+		
+		cheat.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent me){
+				back.playSound("src/boo.wav");
+				BrowserControl.openURL("http://www.urbandictionary.com/define.php?term="+word);
+			}
+		});
 		
 		buttons[0].addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent me) {
